@@ -2,7 +2,7 @@ import { diskStorage } from 'multer';
 import { v4 as uuidv4 } from 'uuid';
 import * as path from 'path';
 import { Controller, Post, Get } from '@nestjs/common';
-import { Body, UploadedFile, UseInterceptors } from '@nestjs/common/decorators';
+import { Body, Delete, Param, UploadedFile, UseInterceptors } from '@nestjs/common/decorators';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ImageService } from './image.service';
 
@@ -33,7 +33,11 @@ export class ImageController {
   }
 
   @Get()
-  async getImage() {
-    return '"Get" request is not working';
+  async getImages() {
+    return this.service.getImages();
+  }
+
+  @Delete('/delete/:name')
+  async deleteImage(@Param() name) {return this.service.deleteImage(name);
   }
 }
