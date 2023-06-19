@@ -6,6 +6,6 @@ import { App } from './app';
 
 setImmediate(async ()=>{
   const app = await NestFactory.create<NestExpressApplication>(App);
-  app.useStaticAssets(join(__dirname, '../uploads'));
+  app.useStaticAssets(join(__dirname, '../../uploads'));
   await app.listen(appConfig.port);
 })
